@@ -1,0 +1,15 @@
+
+
+#ELASTIC.PROPERTIES
+(Young's Modulus) (Poisson's ratio)
+
+#PLASTIC.VONMISES.PROPERTIES
+(number_of_sampling_points)
+(equivalent_plastic_strain) (sigma_y)
+(equivalent_plastic_strain) (sigma_y)
+
+#STRAIN.HISTORY
+(number_of_elements)
+(strainInc_xx) (strainInc_yy) (strainInc_zz) (strainInc_xy) (strainInc_xz) (strainInc_yz)
+(strainInc_xx) (strainInc_yy) (strainInc_zz) (strainInc_xy) (strainInc_xz) (strainInc_yz)
+
