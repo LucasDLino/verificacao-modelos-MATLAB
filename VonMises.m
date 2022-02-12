@@ -46,8 +46,7 @@ classdef VonMises < handle
         end
 
         function [is_plastic, is_fail] = computation(obj, strain)
-            %Integration algorithm for the elastoplastic material with Von
-            %Mises yield surface
+            %Integration algorithm for the elastoplastic material with Von Mises yield surface
 
             %Initialization of some algorithmic and internal variables
             is_plastic = false; % plastic yielding flag
@@ -70,16 +69,15 @@ classdef VonMises < handle
             s_trial = 2. * obj.data_obj.material_obj.G * eed_trial; % deviatoric stress
 
             %Check for plastic admissibility
-            %-------------------------------
+            %----------------------------------------------------
             varj2t_trial = 0.5 * trace(s_trial * s_trial); % J2 invariant of the deviatoric stress tensor
             q_trial = sqrt(3 * varj2t_trial); % effective stress
             sigmay_trial = obj.plfun(eps_trial); % sigma_y trial
             phi_trial = q_trial - sigmay_trial; % yield trial function
 
             if (phi_trial > 0)
-                %Plastic step: Apply return mapping - use Newton-Raphson algorithm
-                %to solve the return mapping equation (Box 7.4)
-                %-------------------------------------------------------------------
+                %Plastic step: Apply return mapping
+                %----------------------------------------------------
                 dgama = 0; % incremental plastic multiplier
                 is_plastic = true;
                 is_fail = true;

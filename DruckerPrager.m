@@ -46,8 +46,7 @@ classdef DruckerPrager < handle
         end
 
         function [is_plastic, is_fail] = computation(obj, strain)
-            %Integration algorithm for the elastoplastic material with
-            %Drucker-Prager yield surface
+            %Integration algorithm for the elastoplastic material with Drucker-Prager yield surface
 
             %Initialization of some algorithmic and internal variables
             dgama = 0; % incremental plastic multiplier
@@ -56,7 +55,7 @@ classdef DruckerPrager < handle
             is_fail = false; % state update failure flag
 
             %Elastic predictor: Compute elastic trial state
-            % ----------------------------------------------
+            %----------------------------------------------------
 
             strain_increment = strain - obj.data_obj.material_obj.strain;
 
@@ -72,7 +71,7 @@ classdef DruckerPrager < handle
             s_trial = 2. * obj.data_obj.material_obj.G * eed_trial; % deviatoric stress
 
             %Check for plastic admissibility
-            %-------------------------------
+            %----------------------------------------------------
             varj2t_trial = 0.5 * trace(s_trial * s_trial); % J2 invariant of the deviatoric stress tensor
             cohesion_trial = obj.plfun(eps_trial); % cohesion trial
             phi_trial = sqrt(varj2t_trial) + p_trial * obj.data_obj.material_obj.eta - obj.data_obj.material_obj.xi * cohesion_trial; % yield trial function
@@ -83,9 +82,8 @@ classdef DruckerPrager < handle
             end
 
             if (res > tol)
-                %Plastic step: Apply return mapping to smooth portion of
-                %cone - computing analytically
-                %-------------------------------------------------------------------
+                %Plastic step: Apply return mapping to smooth portion of cone - computing analytically
+                %----------------------------------------------------
                 is_plastic = true;
                 is_fail = true;
 
@@ -117,8 +115,7 @@ classdef DruckerPrager < handle
 
                 %Check validity of return to smooth portion
                 if sqrt(varj2t_trial) - obj.data_obj.material_obj.G * dgama < 0
-                    %Apply return mapping to apex portion of cone -
-                    %computing analytically
+                    %Apply return mapping to apex portion of cone - computing analytically
 
                     %Set some variables
                     is_fail = true;

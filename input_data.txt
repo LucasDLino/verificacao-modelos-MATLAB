@@ -1,5 +1,3 @@
-
-
 #ELASTIC.PROPERTIES
 (Young's Modulus) (Poisson's ratio)
 
@@ -8,8 +6,12 @@
 (equivalent_plastic_strain) (sigma_y)
 (equivalent_plastic_strain) (sigma_y)
 
+#PLASTIC.DRUCKERPRAGER.PROPERTIES
+(number_of_sampling_points) (eta) (xi) (etabar)
+(equivalent_plastic_strain) (c)
+(equivalent_plastic_strain) (c)
+
 #STRAIN.HISTORY
 (number_of_elements)
-(strainInc_xx) (strainInc_yy) (strainInc_zz) (strainInc_xy) (strainInc_xz) (strainInc_yz)
-(strainInc_xx) (strainInc_yy) (strainInc_zz) (strainInc_xy) (strainInc_xz) (strainInc_yz)
-
+(strain_xx) (strain_yy) (strain_zz) (strain_xy) (strain_xz) (strain_yz)
+(strain_xx) (strain_yy) (strain_zz) (strain_xy) (strain_xz) (strain_yz)

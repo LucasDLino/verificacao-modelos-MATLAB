@@ -46,8 +46,7 @@ classdef MohrCoulomb < handle
         end
         
         function [is_plastic, is_fail] = computation(obj, strain)
-            %Integration algorithm for the elastoplastic material with
-            %Mohr-Coulomb yield surface
+            %Integration algorithm for the elastoplastic material with Mohr-Coulomb yield surface
             
             %Initialization of some algorithmic and internal variables
             is_plastic = false; % plastic yielding flag
@@ -62,7 +61,7 @@ classdef MohrCoulomb < handle
             psi = obj.data_obj.material_obj.psi;
             
             %Elastic predictor: Compute elastic trial state
-            % ----------------------------------------------
+           %----------------------------------------------------
             
             strain_increment = strain - obj.data_obj.material_obj.strain;
             
@@ -89,14 +88,14 @@ classdef MohrCoulomb < handle
             pdirs = eigenvectors(:,ind); %Sorted eigenvectors matrix
             
             %Check for plastic admissibility
-            %-------------------------------
+            %----------------------------------------------------
             cohesion_trial = obj.plfun(eps_trial); % cohesion trial
             
             Phi_trial = pstrs_trial(1) - pstrs_trial(3) + (pstrs_trial(1) + pstrs_trial(3)) * sin(phi) - 2 * cohesion_trial * cos(phi); % yield trial function
             
             if (Phi_trial > 0)
                 %Plastic step: Apply one-vector return mapping first (return to MAIN PLANE)
-                %-------------------------------------------------------------------
+                %----------------------------------------------------
                 is_plastic = true;
                 
                 dgamma = 0; % incremental plastic multiplier
@@ -125,7 +124,7 @@ classdef MohrCoulomb < handle
                 % Check validity of 1-vector return (check sextant of converged stress)
                 if ~((pstrs(1) + TOL) >= pstrs(2) && (pstrs(2) + TOL) >= pstrs(3))
                     % Apply two-vector return mapping to appropriate EDGE
-                    %----------------------------------------------------------------------
+                    %----------------------------------------------------
                     %b = 0;
                     dgammaA = 0; dgammaB = 0;
                     
@@ -182,7 +181,7 @@ classdef MohrCoulomb < handle
                 if ~((pstrs(1) + TOL) >= pstrs(2) && (pstrs(2) + TOL) >= pstrs(3))
                     
                     % Apply multi-vector return mapping to APEX
-                    %----------------------------------------------------------------------
+                    %----------------------------------------------------
                     dEpv = 0;
                     alpha = cos(phi) / sin(psi);
                     
