@@ -123,7 +123,9 @@ classdef Output < handle
                 'MarkerEdgeColor',[0, 0.4470, 0.7410],...
                 'LineWidth', 2);
             
-            %title("Loading history", 'FontSize', 17);
+            set(gca,'FontSize',20)
+            
+            %title("Loading history", 'FontSize', 20);
             xlabel('Deformação equivalente', 'FontSize', 25);
             ylabel('Tensão equivalente (Pa)', 'FontSize', 25);
             
@@ -132,11 +134,11 @@ classdef Output < handle
                 labels{end + 1} = i;
             end
             
-            text(obj.data_obj.effective_strains, obj.data_obj.effective_stresses, cellfun(@num2str, labels,'un', 0),'FontSize', 12, 'VerticalAlignment','bottom','HorizontalAlignment','right');
+            text(obj.data_obj.effective_strains, obj.data_obj.effective_stresses, cellfun(@num2str, labels,'un', 0),'FontSize', 15, 'VerticalAlignment','bottom','HorizontalAlignment','right');
             
             saveas(fig, erase(obj.file_name, ".txt") + ".png");
             saveas(fig, erase(obj.file_name, ".txt") + "_EPS.eps");
-            pause(5);
+            pause(10);
         end
         
         function plot_axial(obj)
@@ -158,14 +160,18 @@ classdef Output < handle
                 'MarkerFace',[0, 0.4470, 0.7410],...
                 'MarkerEdgeColor',[0, 0.4470, 0.7410],...
                 'LineWidth', 2);
+				
+			set(gca,'FontSize',20)
             
-            title("Loading history", 'FontSize', 17);
-            xlabel('Strain_{xx}', 'FontSize', 12);
-            ylabel('Stress_{xx} (Pa)', 'FontSize', 12);
+            title("Loading history", 'FontSize', 20);
+            xlabel('Strain_{xx}', 'FontSize', 25);
+            ylabel('Stress_{xx} (Pa)', 'FontSize', 25);
             
             %text(strain_xx, stress_xx, labels, 'FontSize', 12, 'VerticalAlignment','bottom','HorizontalAlignment','right');
             
             saveas(fig_axial, erase(obj.file_name, ".txt") + "_axial.png");
+            saveas(fig, erase(obj.file_name, ".txt") + "_EPS.eps");
+            pause(10);
         end
         
         function delete(obj)

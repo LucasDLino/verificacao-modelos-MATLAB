@@ -145,8 +145,6 @@ classdef DruckerPrager < handle
                 obj.data_obj.material_obj.stress = s + (p * eye(3, 3));
                 obj.data_obj.material_obj.effective_stress = sqrt(3. * 0.5 * trace(s * s));
 
-                %obj.data_obj.material_obj.effective_stress = (sqrt(3) * obj.data_obj.material_obj.eta * p + sqrt(3 * 0.5 * trace(s * s)))/(1 + sqrt(3) * obj.data_obj.material_obj.eta);
-
                 obj.data_obj.material_obj.elastic_strain = (s / (2. * obj.data_obj.material_obj.G)) + ((p * eye(3, 3)) / (3. * obj.data_obj.material_obj.K));
                 obj.data_obj.material_obj.plastic_strain = obj.data_obj.material_obj.strain - obj.data_obj.material_obj.elastic_strain;
 
